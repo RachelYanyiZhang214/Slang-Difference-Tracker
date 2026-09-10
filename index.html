@@ -1,289 +1,135 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Between the Lines — A Cross-Cultural Slang Atlas</title>
-<meta name="description" content="An interactive atlas of slang, greetings, and culturally loaded expressions across languages.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;600&family=Noto+Sans+JP:wght@400;600&family=Noto+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Between the Lines — Parallel Slang Atlas</title>
 <style>
-:root{
-  --ink:#101112; --paper:#f4f0e7; --acid:#d7ff3f; --violet:#806cff;
-  --coral:#ff6b57; --cyan:#51d7e8; --line:rgba(16,17,18,.15);
-  --card:rgba(255,255,255,.58); --muted:#6c6d69;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,"Noto Sans SC","Noto Sans JP","Noto Sans KR",sans-serif;overflow-x:hidden}
-body.dark{--ink:#f6f2e9;--paper:#101112;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.14);--muted:#aaa9a2}
-button,input{font:inherit}
-a{color:inherit}
-.noise{position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:99;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E")}
-nav{position:fixed;z-index:50;top:16px;left:18px;right:18px;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1px solid var(--line);background:color-mix(in srgb,var(--paper) 78%,transparent);backdrop-filter:blur(18px);border-radius:18px}
-.brand{font-weight:800;letter-spacing:-.04em}
-.navlinks{display:flex;gap:6px;align-items:center}
-.navlinks a,.navlinks button{border:0;background:transparent;padding:8px 10px;text-decoration:none;color:var(--ink);border-radius:10px;cursor:pointer}
-.navlinks a:hover,.navlinks button:hover{background:var(--card)}
-.hero{min-height:100vh;padding:120px 6vw 60px;position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:6vw;align-items:center}
-.kicker{font:500 12px DM Mono,monospace;text-transform:uppercase;letter-spacing:.14em;display:flex;gap:10px;align-items:center}
-.kicker:before{content:"";width:34px;height:2px;background:var(--ink)}
-h1{font-size:clamp(64px,10vw,152px);letter-spacing:-.08em;line-height:.78;margin:28px 0 28px;font-weight:800;max-width:950px}
-h1 em{font-style:normal;color:var(--violet)}
-.lede{font-size:clamp(18px,2vw,28px);line-height:1.32;max-width:720px}
-.lede strong{background:var(--acid);color:#101112;padding:0 .18em}
-.hero-actions{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
-.btn{border:1px solid var(--ink);padding:12px 16px;border-radius:999px;background:transparent;cursor:pointer;text-decoration:none;display:inline-flex;gap:8px;align-items:center}
-.btn.primary{background:var(--ink);color:var(--paper)}
-.btn:hover{transform:translateY(-2px)}
-.orbit{height:560px;position:relative;display:grid;place-items:center}
-.core{width:170px;height:170px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;text-align:center;font:500 13px DM Mono;position:relative;z-index:3;background:var(--paper)}
-.ring{position:absolute;border:1px dashed var(--line);border-radius:50%}
-.r1{width:320px;height:320px}.r2{width:500px;height:500px}
-.phrase-chip{position:absolute;padding:11px 13px;border:1px solid var(--ink);background:var(--paper);border-radius:12px;font-size:14px;box-shadow:5px 5px 0 var(--ink);animation:float 5s ease-in-out infinite}
-.phrase-chip small{display:block;font:400 10px DM Mono;color:var(--muted);margin-top:3px}
-.p1{top:9%;left:26%;transform:rotate(-5deg)}.p2{top:27%;right:0;animation-delay:-1s}.p3{bottom:18%;right:8%;animation-delay:-2s}.p4{bottom:7%;left:22%;animation-delay:-3s}.p5{top:34%;left:0;animation-delay:-4s}
-@keyframes float{50%{translate:0 -9px}}
-.marquee{overflow:hidden;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:12px 0;background:var(--acid);color:#101112}
-.marquee-inner{white-space:nowrap;font:500 13px DM Mono;animation:scroll 24s linear infinite}
-@keyframes scroll{to{transform:translateX(-50%)}}
-section{padding:110px 6vw}
-.section-head{display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:46px}
-.section-head h2{font-size:clamp(44px,7vw,92px);line-height:.9;letter-spacing:-.07em;margin:0;max-width:850px}
-.section-head p{max-width:470px;color:var(--muted);font-size:16px;line-height:1.55}
-.legend{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 28px}
-.filter{border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 12px;cursor:pointer;color:var(--ink)}
-.filter.active{background:var(--ink);color:var(--paper)}
-.atlas{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.card{min-height:260px;border:1px solid var(--line);border-radius:22px;padding:18px;background:var(--card);position:relative;overflow:hidden;cursor:pointer;transition:.2s ease}
-.card:hover{transform:translateY(-5px);box-shadow:0 14px 35px rgba(0,0,0,.08)}
-.card .flag{font-size:27px}.card h3{font-size:28px;letter-spacing:-.04em;margin:22px 0 6px}.card .roman{font:400 11px DM Mono;color:var(--muted)}.card .meaning{font-size:14px;margin-top:15px;line-height:1.45}.card .tag{position:absolute;bottom:15px;left:15px;font:500 10px DM Mono;text-transform:uppercase;border:1px solid var(--line);padding:5px 7px;border-radius:99px}
-.card .plus{position:absolute;right:15px;top:15px;width:28px;height:28px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center}
-.dialogue-stage{border:1px solid var(--ink);border-radius:30px;padding:28px;min-height:560px;display:grid;grid-template-columns:1fr .8fr;gap:26px;background:var(--card)}
-.chat{display:flex;flex-direction:column;gap:16px;justify-content:center}
-.bubble{max-width:82%;padding:15px 17px;border:1px solid var(--ink);border-radius:20px;background:var(--paper);position:relative}
-.bubble.right{align-self:flex-end;background:var(--acid);color:#101112}
-.bubble .who{font:500 10px DM Mono;text-transform:uppercase;margin-bottom:6px;opacity:.65}
-.bubble .big{font-size:25px;font-weight:700;letter-spacing:-.03em}
-.insight-panel{border-left:1px solid var(--line);padding-left:26px;display:flex;flex-direction:column;justify-content:center}
-.insight-panel .eyebrow{font:500 11px DM Mono;text-transform:uppercase;color:var(--muted)}
-.insight-panel h3{font-size:42px;line-height:1;letter-spacing:-.05em;margin:12px 0}
-.insight-panel p{font-size:16px;line-height:1.55;color:var(--muted)}
-.cluster-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-.cluster-buttons button{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
-.cluster-buttons button.active{background:var(--violet);color:white;border-color:var(--violet)}
-.tck{display:grid;grid-template-columns:.7fr 1.3fr;gap:50px;align-items:start}
-.tck h2{font-size:clamp(50px,7vw,94px);letter-spacing:-.07em;line-height:.9;margin:0}
-.tck-box{border:1px solid var(--ink);border-radius:28px;padding:28px;background:var(--card)}
-.tck-box label{font:500 11px DM Mono;text-transform:uppercase}
-.country-picks{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 22px}
-.country-picks button{border:1px solid var(--line);border-radius:999px;padding:9px 11px;background:transparent;color:var(--ink);cursor:pointer}
-.country-picks button.selected{background:var(--cyan);color:#101112;border-color:#101112}
-.collision{padding:20px;border-radius:18px;background:var(--ink);color:var(--paper);min-height:160px}
-.collision h3{margin:0 0 9px;font-size:25px}
-.collision p{margin:0;line-height:1.5;opacity:.82}
-.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.method{border-top:2px solid var(--ink);padding-top:14px}.method .n{font:500 11px DM Mono;color:var(--muted)}.method h3{font-size:24px;margin:15px 0 8px}.method p{color:var(--muted);line-height:1.5}
-.quote{font-size:clamp(38px,6vw,86px);letter-spacing:-.06em;line-height:.95;max-width:1250px;margin:0}
-.quote span{color:var(--coral)}
-footer{padding:60px 6vw 90px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:30px}
-footer p{max-width:600px;color:var(--muted);line-height:1.5}
-.modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.5);display:none;place-items:center;padding:20px}
-.modal.open{display:grid}
-.modal-card{background:var(--paper);color:var(--ink);max-width:740px;width:100%;max-height:88vh;overflow:auto;border:1px solid var(--ink);border-radius:28px;padding:26px;box-shadow:10px 10px 0 var(--ink)}
-.modal-top{display:flex;justify-content:space-between;align-items:center}.close{border:1px solid var(--line);background:transparent;color:var(--ink);width:36px;height:36px;border-radius:50%;cursor:pointer}
-.modal-phrase{font-size:clamp(44px,7vw,76px);letter-spacing:-.06em;margin:28px 0 8px}
-.modal-roman{font:400 12px DM Mono;color:var(--muted)}
-.fact{border-top:1px solid var(--line);padding:16px 0}.fact b{display:block;font:500 10px DM Mono;text-transform:uppercase;margin-bottom:5px;color:var(--muted)}
-.source{font-size:12px;color:var(--muted);margin-top:14px}
-@media(max-width:980px){.hero{grid-template-columns:1fr}.orbit{height:440px}.atlas{grid-template-columns:repeat(2,1fr)}.dialogue-stage,.tck{grid-template-columns:1fr}.insight-panel{border-left:0;border-top:1px solid var(--line);padding:25px 0 0}.method-grid{grid-template-columns:1fr}.navlinks a{display:none}}
-@media(max-width:580px){h1{font-size:64px}.atlas{grid-template-columns:1fr}.orbit{scale:.78;margin:-45px}.section-head{display:block}.section-head p{margin-top:18px}footer{grid-template-columns:1fr}}
+:root{--paper:#f5f0e6;--ink:#111;--muted:#6c6a65;--line:rgba(17,17,17,.16);--acid:#d9ff48;--purple:#7867ff;--card:#fbf8f1}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI","Noto Sans SC","Noto Sans JP","Noto Sans KR",sans-serif}
+nav{position:sticky;top:0;z-index:20;padding:15px 5vw;display:flex;justify-content:space-between;border-bottom:1px solid var(--line);background:rgba(245,240,230,.92);backdrop-filter:blur(14px)}
+nav b{letter-spacing:-.03em}nav a{color:inherit;text-decoration:none;font-size:13px;margin-left:18px}
+.hero{min-height:72vh;padding:8vw 5vw 6vw;display:grid;grid-template-columns:1.2fr .8fr;gap:6vw;align-items:center}
+.kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}
+h1{font-size:clamp(58px,9vw,130px);line-height:.82;letter-spacing:-.075em;margin:22px 0}
+h1 em{font-style:normal;color:var(--purple)}.lede{font-size:clamp(18px,2vw,27px);line-height:1.4;max-width:780px}
+.formula{border:1px solid var(--ink);padding:27px;border-radius:26px;background:var(--acid);box-shadow:8px 8px 0 var(--ink)}
+.formula strong{display:block;font-size:38px;line-height:1.03;letter-spacing:-.05em;margin:14px 0}
+.strip{background:#111;color:#f5f0e6;padding:12px 5vw;font-size:11px;letter-spacing:.11em;text-transform:uppercase}
+section{padding:90px 5vw}.head{display:grid;grid-template-columns:1fr .6fr;gap:50px;align-items:end;margin-bottom:38px}
+.head h2{font-size:clamp(45px,6vw,82px);letter-spacing:-.065em;line-height:.92;margin:0}.head p{color:var(--muted);line-height:1.6}
+.language-head,.row{display:grid;grid-template-columns:200px repeat(5,minmax(155px,1fr));gap:10px}
+.language-head{position:sticky;top:49px;background:var(--paper);z-index:8;padding:10px 0;border-bottom:1px solid var(--line)}
+.language-head div{font-weight:800;padding:10px}.language-head small{display:block;color:var(--muted);font-weight:500;margin-top:3px}
+.category{padding:55px 0;border-bottom:1px solid var(--ink)}
+.category-intro{display:grid;grid-template-columns:200px 1fr;gap:10px;margin-bottom:18px}
+.num{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.category h3{font-size:clamp(36px,4vw,58px);letter-spacing:-.055em;line-height:.95;margin:0 0 10px}
+.category .intro{color:var(--muted);font-size:17px;line-height:1.5;max-width:780px}
+.situation{background:#111;color:#f5f0e6;border-radius:18px;padding:18px;min-height:350px;display:flex;flex-direction:column;justify-content:space-between}
+.situation strong{font-size:20px;letter-spacing:-.03em}.situation small{opacity:.7;line-height:1.5}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;min-height:350px;cursor:pointer;transition:.18s;position:relative}
+.card:hover{transform:translateY(-4px);border-color:var(--ink)}
+.flag{font-size:23px}.phrase{font-weight:900;font-size:27px;line-height:1.05;letter-spacing:-.035em;margin:24px 0 5px}.roman{font-size:11px;color:var(--muted);min-height:28px}
+.field{margin-top:17px}.field b{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}.field p{font-size:13px;line-height:1.45;margin:0}
+.plus{position:absolute;top:12px;right:12px;border:1px solid var(--line);width:27px;height:27px;border-radius:50%;display:grid;place-items:center}
+.takeaway{margin:15px 0 0 210px;background:var(--acid);border-radius:16px;padding:16px 20px;display:grid;grid-template-columns:160px 1fr;gap:15px;font-size:14px;line-height:1.55}
+.takeaway b{font-size:10px;letter-spacing:.09em;text-transform:uppercase}
+.method{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.method article{border-top:3px solid var(--ink);padding-top:15px}.method h3{font-size:25px;margin:10px 0}.method p{color:var(--muted);line-height:1.55}
+footer{padding:60px 5vw;border-top:1px solid var(--line);color:var(--muted)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;display:none;place-items:center;padding:20px}.modal.open{display:grid}
+.modalbox{background:var(--paper);width:min(720px,100%);max-height:88vh;overflow:auto;border:1px solid #111;border-radius:24px;padding:25px;box-shadow:9px 9px 0 #111}
+.modalhead{display:flex;justify-content:space-between;align-items:center}.close{border:1px solid var(--line);background:transparent;width:34px;height:34px;border-radius:50%;cursor:pointer}
+.modalphrase{font-size:58px;font-weight:900;letter-spacing:-.06em;margin:27px 0 4px}.modalrow{border-top:1px solid var(--line);padding:15px 0;line-height:1.5}.modalrow b{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+@media(max-width:1050px){.hero,.head{grid-template-columns:1fr}.language-head{display:none}.row{grid-template-columns:1fr 1fr}.situation{grid-column:1/-1;min-height:auto}.category-intro{grid-template-columns:1fr}.takeaway{margin-left:0;grid-template-columns:1fr}}
+@media(max-width:650px){.row,.method{grid-template-columns:1fr}.card{min-height:auto;padding-bottom:50px}.hero{padding-top:75px}nav span{display:none}}
 </style>
 </head>
 <body>
-<div class="noise"></div>
-<nav>
-  <div class="brand">BETWEEN THE LINES ↗</div>
-  <div class="navlinks">
-    <a href="#atlas">Atlas</a><a href="#conversation">Conversations</a><a href="#tck">TCK Mode</a><a href="#method">Method</a>
-    <button id="theme">◐</button>
-  </div>
-</nav>
+<nav><b>BETWEEN THE LINES ↗</b><span><a href="#atlas">Parallel Atlas</a><a href="#method">Method</a></span></nav>
 
 <header class="hero">
-  <div>
-    <div class="kicker">A cross-cultural slang & pragmatics experiment</div>
-    <h1>What do we <em>mean</em> when we don't say what we mean?</h1>
-    <p class="lede">A phrase can translate perfectly and still miss the point. This interactive atlas follows the <strong>hidden social rules</strong> inside greetings, slang, particles, and everyday expressions across languages.</p>
-    <div class="hero-actions"><a class="btn primary" href="#atlas">Enter the atlas →</a><a class="btn" href="#conversation">Make phrases talk</a></div>
-  </div>
-  <div class="orbit" aria-hidden="true">
-    <div class="ring r2"></div><div class="ring r1"></div>
-    <div class="core">SAME HUMAN NEED<br>≠<br>SAME SOCIAL SCRIPT</div>
-    <div class="phrase-chip p1">你吃了吗？<small>Mandarin · care / greeting</small></div>
-    <div class="phrase-chip p2">お疲れ様です<small>Japanese · shared effort</small></div>
-    <div class="phrase-chip p3">No worries<small>Australian English · reassurance</small></div>
-    <div class="phrase-chip p4">밥 먹었어?<small>Korean · care / greeting</small></div>
-    <div class="phrase-chip p5">Ei se mitään<small>Finnish · minimizing burden</small></div>
-  </div>
+<div><div class="kicker">A systematic cross-cultural slang & pragmatics atlas</div>
+<h1>Same moment.<br><em>Different script.</em></h1>
+<p class="lede">Instead of collecting unrelated “interesting words,” this project asks the same social question in five linguistic contexts — side by side. What changes when people greet, encourage, reassure, recognize effort, or react to something impressive?</p></div>
+<div class="formula"><div class="kicker">The comparison rule</div><strong>5 languages × 5 situations = 25 parallel observations.</strong><p>Every category contains every language, in the same order, using the same analytical structure. The phrases do not need to be literal translations. They need to perform a comparable social job.</p></div>
 </header>
-
-<div class="marquee"><div class="marquee-inner">
-LITERAL TRANSLATION IS NOT SOCIAL TRANSLATION ✦ WORDS CARRY RELATIONSHIPS ✦ CONTEXT CHANGES MEANING ✦ SLANG IS A SOCIAL MAP ✦ LITERAL TRANSLATION IS NOT SOCIAL TRANSLATION ✦ WORDS CARRY RELATIONSHIPS ✦ CONTEXT CHANGES MEANING ✦ SLANG IS A SOCIAL MAP ✦
-</div></div>
+<div class="strip">Read horizontally → one social situation · five linguistic strategies · one comparative insight</div>
 
 <section id="atlas">
-  <div class="section-head">
-    <h2>The Phrase Atlas</h2>
-    <p>Click a card. Each entry separates the literal wording from its social function, then asks what assumption about relationships makes that function possible.</p>
-  </div>
-  <div class="legend" id="filters"></div>
-  <div class="atlas" id="cards"></div>
-</section>
+<div class="head"><h2>The Parallel Atlas</h2><p>Start with the situation, then read across. Each card explains what the phrase literally says and what it is actually doing socially. Click a card for a deeper explanation and a caution against overgeneralizing.</p></div>
 
-<section id="conversation">
-  <div class="section-head">
-    <h2>When phrases talk to each other</h2>
-    <p>Equivalent expressions often solve the same social problem in different ways. Switch the situation and watch the cultural logic change.</p>
-  </div>
-  <div class="dialogue-stage">
-    <div class="chat" id="chat"></div>
-    <div class="insight-panel">
-      <div class="eyebrow">Same job, different script</div>
-      <h3 id="clusterTitle"></h3>
-      <p id="clusterInsight"></p>
-      <div class="cluster-buttons" id="clusterButtons"></div>
-    </div>
-  </div>
-</section>
-
-<section id="tck">
-  <div class="tck">
-    <div>
-      <div class="kicker">Third-culture lens</div>
-      <h2>Build your own culture collision.</h2>
-      <p style="color:var(--muted);line-height:1.6">Select two places. The site does not decide which one is “right”; it shows how a person moving between them may learn to switch social scripts.</p>
-    </div>
-    <div class="tck-box">
-      <label>Choose two cultural-linguistic contexts</label>
-      <div class="country-picks" id="countryPicks"></div>
-      <div class="collision" id="collision"><h3>Pick two contexts ↑</h3><p>Your TCK comparison will appear here.</p></div>
-    </div>
-  </div>
+<div class="language-head">
+<div>Situation ↓</div><div>🇨🇳 Mandarin<small>Chinese</small></div><div>🇫🇮 Finnish<small>Suomi</small></div><div>🇯🇵 Japanese<small>日本語</small></div><div>🇰🇷 Korean<small>한국어</small></div><div>🇬🇧/🇺🇸 English<small>informal</small></div>
+</div>
+<div id="categories"></div>
 </section>
 
 <section id="method">
-  <div class="section-head"><h2>How to read this project</h2><p>Slang is evidence, not a census. An expression can reveal a recurring communicative norm without describing every speaker or every situation.</p></div>
-  <div class="method-grid">
-    <div class="method"><div class="n">01 / PRAGMATICS</div><h3>Translate the social job</h3><p>Ask what the utterance is doing: opening contact, softening a request, signaling solidarity, showing care, lowering distance, or marking hierarchy.</p></div>
-    <div class="method"><div class="n">02 / CONTRAST</div><h3>Find functional equivalents</h3><p>Compare expressions that do similar interpersonal work, even when their literal wording is completely different.</p></div>
-    <div class="method"><div class="n">03 / CAUTION</div><h3>Separate pattern from stereotype</h3><p>A phrase may index a value in a context. It does not prove that all members of a culture share one personality or worldview.</p></div>
-  </div>
+<div class="head"><h2>How to read the comparison</h2><p>The website is comparing pragmatic function, not claiming that every speaker in a country behaves the same way.</p></div>
+<div class="method">
+<article><div class="num">01</div><h3>Situation first</h3><p>Each category starts with a human interaction — not a vocabulary list. This gives every language the same question to answer.</p></article>
+<article><div class="num">02</div><h3>Function before translation</h3><p>Two expressions can perform similar social work even when their literal words are completely different.</p></article>
+<article><div class="num">03</div><h3>Pattern, not stereotype</h3><p>Age, region, relationship, tone and setting all matter. The project identifies communicative patterns without turning them into national personality claims.</p></article>
+</div>
 </section>
+<footer><b>BETWEEN THE LINES</b><p>A living digital-humanities project about the distance between what words literally say and what people socially hear.</p></footer>
 
-<section>
-  <p class="quote">The most interesting translation error is not when a word is wrong. It is when every word is <span>right</span> — and the relationship is wrong.</p>
-</section>
-
-<footer>
-  <div><div class="brand">BETWEEN THE LINES</div><p>A personal digital humanities project on slang, cultural pragmatics, and third-culture observation. Designed as a living archive: each phrase can be revised, sourced, and expanded as new speakers contribute.</p></div>
-  <div><div class="kicker">Research note</div><p>Entries distinguish attested pragmatic functions from interpretive cultural commentary. Sources include sociolinguistic research and reputable cultural references. The project intentionally avoids treating national cultures as homogeneous.</p><p style="font:400 11px DM Mono">PROJECT WINDOW · G10–G11 · INTERACTIVE EDITION</p></div>
-</footer>
-
-<div class="modal" id="modal"><div class="modal-card" id="modalCard"></div></div>
+<div class="modal" id="modal"><div class="modalbox" id="modalbox"></div></div>
 
 <script>
-const phrases = [
-{lang:"Mandarin Chinese",flag:"🇨🇳",phrase:"你吃了吗？",roman:"Nǐ chī le ma?",literal:"Have you eaten?",social:"A traditional/colloquial greeting and expression of concern; often no meal report is required.",tag:"care",lens:"Contact can be opened through concern for everyday wellbeing — historically, food becomes a socially legible way to ask 'are you okay?'",note:"More associated with older or familiar usage than a universal modern equivalent of 'hello'.",source:"China Daily language/culture discussions of 吃了吗 as a greeting."},
-{lang:"Korean",flag:"🇰🇷",phrase:"밥 먹었어?",roman:"Bap meogeosseo?",literal:"Did you eat?",social:"Can function as an interrogative greeting among familiar speakers as well as a real question.",tag:"care",lens:"Personal interest can be encoded through ordinary bodily wellbeing rather than an abstract 'how are you?'.",note:"Meaning depends on relationship, age, context and intonation.",source:"Okamura (2017), The Sociolinguistic Journal of Korea."},
-{lang:"Japanese",flag:"🇯🇵",phrase:"お疲れ様です",roman:"Otsukaresama desu",literal:"You are tired / honorable tiredness (not a usable literal translation)",social:"A highly context-sensitive formula recognizing effort; common at work and around shared tasks.",tag:"effort",lens:"Social smoothness can include explicitly acknowledging another person's labor and participation.",note:"It can greet, close an interaction, or recognize work; there is no one English equivalent.",source:"Widely described in Japanese pragmatics and workplace-language references."},
-{lang:"Finnish",flag:"🇫🇮",phrase:"Ei se mitään",roman:"ei se mi-tään",literal:"It's nothing.",social:"A common response that can downplay an apology, mishap, or thanks: 'no problem / don't worry about it.'",tag:"burden",lens:"Reassurance may work by shrinking the size of the inconvenience rather than elaborating emotional support.",note:"Function varies by context; Finnish interaction cannot be reduced to terseness.",source:"Standard Finnish pragmatic usage; interpretive note by project author."},
-{lang:"Australian English",flag:"🇦🇺",phrase:"No worries",roman:"",literal:"No worries.",social:"A flexible response meaning roughly 'that's alright,' 'sure,' or 'you're welcome,' strongly established in informal Australian English.",tag:"burden",lens:"A cordial response can protect the other person's face by presenting an imposition as unproblematic.",note:"Now used beyond Australia too.",source:"Peters & Burke, World Englishes (2025)."},
-{lang:"Singapore English",flag:"🇸🇬",phrase:"lah",roman:"",literal:"No fixed literal translation.",social:"A sentence-final particle whose effect changes with context: emphasis, obviousness, persuasion, familiarity, irritation, reassurance and more.",tag:"stance",lens:"Some social meaning lives outside dictionary vocabulary: particles tell listeners how to take the sentence and how speakers position themselves.",note:"Adding lah randomly does not create natural Singlish; tone and syntax matter.",source:"Besemeres & Wierzbicka (2003); Lim (2022), Languages."},
-{lang:"Spanish",flag:"🇪🇸",phrase:"sobremesa",roman:"so-bre-ME-sa",literal:"Over/on the table.",social:"The time spent talking and lingering together after a meal.",tag:"togetherness",lens:"A culture can lexicalize not just an object but a recurring social scene: conversation is treated as part of the meal rather than what happens after it.",note:"Usage spans Spanish-speaking contexts, with regional differences.",source:"Standard Spanish lexical/cultural usage."},
-{lang:"Dutch",flag:"🇳🇱",phrase:"gezellig",roman:"khe-ZEL-ikh",literal:"No single English equivalent.",social:"Can describe cozy, pleasant, sociable, convivial people, places, or moments.",tag:"togetherness",lens:"Pleasantness is often conceptualized as relational atmosphere — a quality produced between people and setting.",note:"Not every use requires company; the semantic range is broader than 'cozy'.",source:"Dutch cultural-language references on gezellig/gezelligheid."},
-{lang:"German",flag:"🇩🇪",phrase:"Feierabend",roman:"FY-er-ah-bent",literal:"Celebration evening.",social:"The end of the working day / time after work when work is finished.",tag:"boundary",lens:"A lexical boundary can make 'work is now over' unusually explicit, turning transition itself into a named social time.",note:"It is a normal German word, not slang; included because it encodes a culturally interesting everyday boundary.",source:"Standard German usage."},
-{lang:"Hindi",flag:"🇮🇳",phrase:"जुगाड़",roman:"jugāṛ / jugaad",literal:"Makeshift arrangement / workaround.",social:"An improvised, resourceful solution using what is available; also debated as a broader social/business idea.",tag:"resourcefulness",lens:"Improvisation can be framed not merely as a failure of planning but as practical intelligence under constraint.",note:"The term has many regional and evaluative shades; romanticizing it can hide structural constraints.",source:"Common Hindi usage and scholarship on 'jugaad' innovation."},
-{lang:"Arabic",flag:"🌍",phrase:"إن شاء الله",roman:"in shāʾ Allāh",literal:"If God wills.",social:"Used across many Arabic-speaking communities when referring to hoped-for or future events; pragmatic force ranges from sincere hope to politeness or uncertainty.",tag:"future",lens:"Future talk can explicitly acknowledge contingency rather than presenting plans as fully controllable.",note:"This is a religious phrase used far beyond slang and across very diverse communities; interpretation depends heavily on speaker/context.",source:"Standard Arabic and sociopragmatic usage."},
-{lang:"Brazilian Portuguese",flag:"🇧🇷",phrase:"saudade",roman:"sau-DA-dji",literal:"No exact one-word English equivalent.",social:"A feeling of longing or missing someone/something, often with affection and memory.",tag:"emotion",lens:"Languages differ in where they draw lexical boundaries around mixed emotions; naming a blend can make it easier to recognize socially.",note:"Claims that it is 'untranslatable' are overstated; it is translatable by description.",source:"Standard Portuguese lexical usage."},
-{lang:"French",flag:"🇫🇷",phrase:"bof",roman:"bof",literal:"—",social:"An interjection expressing indifference, doubt, mild dissatisfaction, or 'meh.'",tag:"stance",lens:"A tiny sound can do social positioning efficiently: it can withhold enthusiasm without building a full argument.",note:"Tone matters; it can sound dismissive.",source:"Standard colloquial French usage."},
-{lang:"British English",flag:"🇬🇧",phrase:"You alright?",roman:"",literal:"Are you alright?",social:"In many everyday encounters it functions as a greeting rather than a request for a medical/emotional status report.",tag:"greeting",lens:"A surface question about wellbeing can conventionalize into contact-making, just as food questions can elsewhere.",note:"Regional and generational usage varies.",source:"Common British English pragmatic usage."},
-{lang:"Finnish",flag:"🇫🇮",phrase:"no niin",roman:"no niin",literal:"Well, so / there.",social:"A famously flexible discourse expression: agreement, transition, encouragement, resignation, irritation, completion — largely through context and intonation.",tag:"stance",lens:"Some expressions act less like words and more like interactional tools for steering a moment.",note:"Its flexibility is often exaggerated for humor, but the pragmatic range is genuinely broad.",source:"Standard Finnish discourse usage; project-author speaker intuition."},
-{lang:"Cantonese",flag:"🇭🇰",phrase:"加油",roman:"gaa1 jau4",literal:"Add oil.",social:"An encouragement meaning 'keep going / you can do it'; also used in Mandarin as jiāyóu.",tag:"effort",lens:"Motivation can be metaphorized as supplying fuel: support means adding energy to another person's effort.",note:"Shared across several Chinese-speaking contexts, with local pronunciation and histories of use.",source:"Common Cantonese/Mandarin encouragement usage."}
-];
+const categories=[
+{n:"01",title:"Checking in",intro:"You see someone you know and want to acknowledge them or lightly ask how things are going.",q:"How do I say: “I see you. How are things?”",take:"All five open contact, but the surface question changes: food, general wellbeing, physical state, or a vague “what is happening?” This shows why literal translation alone can misread a greeting.",items:[
+["Mandarin","🇨🇳","你吃了吗？","Nǐ chī le ma?","Have you eaten?","A traditional/familiar check-in that can work as a greeting as well as a real question.","Concern is packaged through an ordinary concrete condition: eating.","It is not a universal modern substitute for 你好. Age, region, familiarity and mealtime context matter."],
+["Finnish","🇫🇮","Mitä kuuluu?","mi-tä kuu-luu","How are things / what is heard?","A conventional way to ask how someone is doing.","The wording stays broad rather than attaching concern to one concrete need.","How detailed the answer becomes depends heavily on relationship and context."],
+["Japanese","🇯🇵","元気？","Genki?","Well? Energetic?","A casual check-in with someone familiar, roughly “you good?” or “how’ve you been?”","The interaction compresses a full wellbeing question into a state word.","It is not the default greeting for every encounter."],
+["Korean","🇰🇷","밥 먹었어?","Bap meogeosseo?","Did you eat?","Among familiar speakers, it can function partly as an interrogative greeting while retaining literal question force.","Interest in the person is expressed through everyday wellbeing.","Research shows speakers may still answer it genuinely; it is not simply Korean for “hello.”"],
+["English","🇬🇧","What’s up?","","What is up?","An informal greeting/check-in that often does not request a detailed report.","Shared convention lets an intentionally vague question perform social contact.","Tone can turn it into a genuine question about a problem."]
+]},
+{n:"02",title:"Encouraging someone",intro:"Someone is about to perform, take a test, finish a difficult task, or keep going through something hard.",q:"How do I say: “Keep going — I’m behind you”?",take:"The goal is similar, but the metaphors differ: Mandarin adds fuel; Finnish offers tsemppi; Japanese foregrounds persistence; Korean turns “fighting” into a cheer; English expresses confidence that the person already has the ability.",items:[
+["Mandarin","🇨🇳","加油！","Jiāyóu!","Add fuel!","A very common encouragement before or during effort.","Support is metaphorized as supplying additional energy.","It can be heartfelt or simply a routine cheer."],
+["Finnish","🇫🇮","Tsemppiä!","TSEMP-pi-ä","Encouragement / strength!","A colloquial way to wish someone energy, luck or perseverance.","It offers emotional momentum rather than predicting a specific outcome.","It has no single clean English equivalent."],
+["Japanese","🇯🇵","頑張って！","Ganbatte!","Persist / do your best!","A highly common encouragement before effort.","The expression foregrounds persistence and exertion.","In sensitive situations, urging someone already overwhelmed to keep trying may be poorly matched."],
+["Korean","🇰🇷","화이팅!","Hwaiting!","From English “fighting”","A cheer meaning roughly “you can do it / let’s go!”","An English-looking loan has developed a distinctly Korean pragmatic function.","It normally has nothing to do with physical fighting."],
+["English","🇺🇸","You got this.","","You have this.","Informal reassurance before a challenge.","Encouragement is framed as confidence in the person’s existing ability.","It may sound too casual in formal situations."]
+]},
+{n:"03",title:"Erasing awkwardness",intro:"Someone apologizes for a small mistake, inconveniences you, or worries that they caused trouble.",q:"How do I say: “It’s okay — don’t make this bigger”?",take:"These expressions solve the same face-saving problem through different wording: remove the matter, call it nothing, mark the situation as okay, or erase the worry. Comparable function does not require identical vocabulary.",items:[
+["Mandarin","🇨🇳","没事。","Méi shì.","There is no matter.","A common response to minor apologies, concern or mishaps.","Reassurance comes from shrinking the event itself.","没关系 is another common option; the best choice depends on context."],
+["Finnish","🇫🇮","Ei se mitään.","ei se mi-tään","It’s nothing.","Used to downplay a small inconvenience or apology.","The event is minimized instead of discussed at length.","Its brevity can appear emotionally flat in literal translation while still functioning as reassurance."],
+["Japanese","🇯🇵","大丈夫。","Daijōbu.","Okay / all right.","Can reassure someone that you, the situation or the outcome is fine.","A single state-word covers several “it’s fine / I’m fine / no need” functions.","Because it is flexible, context and intonation are essential."],
+["Korean","🇰🇷","괜찮아.","Gwaenchana.","It’s okay.","Informal reassurance after a small mistake or check-in.","The situation is evaluated as acceptable instead of assigning blame.","Speech level changes with relationship; 괜찮아요 is more polite."],
+["English","🇦🇺","No worries.","","There are no worries.","A flexible reassurance, especially associated with informal Australian English.","It removes the emotional consequence — worry — rather than discussing the incident.","It is now widely used outside Australia too."]
+]},
+{n:"04",title:"Recognizing effort",intro:"Someone has finished work, helped with a task, or clearly spent energy on something. You want to acknowledge the labor itself.",q:"How do I say: “I noticed the effort you spent”?",take:"This row reveals an asymmetry: Mandarin, Japanese and Korean have especially natural formulas that foreground spent effort. Finnish and English often reach for praise or thanks instead. The absence of a perfect equivalent is itself meaningful.",items:[
+["Mandarin","🇨🇳","辛苦了。","Xīnkǔ le.","You have gone through hardship/effort.","Said after someone has worked, helped or put in substantial effort.","The cost of the labor is made conversationally visible.","Workplace and relationship context affect how natural it sounds."],
+["Finnish","🇫🇮","Hyvin vedetty!","HY-vin ve-det-ty","Well done / well pulled.","A colloquial compliment after someone handles something successfully.","Finnish can reach for praise of performance instead of one ritual all-purpose effort formula.","This is a functional comparison, not a direct equivalent of お疲れ様です."],
+["Japanese","🇯🇵","お疲れ様です。","Otsukaresama desu.","Literally built around tiredness/effort.","A routine acknowledgment around work and shared tasks; it may greet, close, or recognize effort.","The expenditure of effort itself becomes socially acknowledgeable.","No one English translation works in every setting."],
+["Korean","🇰🇷","수고하셨습니다.","Sugohasyeotsseumnida.","You worked hard / went through effort.","A polite expression recognizing another person’s work or trouble.","Like Japanese and Mandarin, it directly makes labor expenditure visible.","Status and speech level matter; more casual forms exist."],
+["English","🇺🇸","Nice work.","","The work was good.","A common informal compliment after a task or performance.","English often evaluates the result rather than ritualizing the worker’s fatigue.","“Thanks for your hard work” is closer semantically but longer and more situational."]
+]},
+{n:"05",title:"Reacting to something impressive",intro:"A friend shows you something surprising, excellent, extreme or hard to believe. You want a fast emotional reaction.",q:"How do I say: “Whoa — that is a lot”?",take:"Reaction slang is especially unstable across languages. Some expressions praise, some mark intensity, and some can even flip from negative to positive depending on tone. This is where dictionary translation becomes least useful.",items:[
+["Mandarin","🇨🇳","牛啊！","Niú a!","Cow / ox!","Colloquial praise meaning impressive, awesome or highly capable.","An ordinary animal word becomes compact positive evaluation.","Very informal; 牛 appears in several slang constructions."],
+["Finnish","🇫🇮","Siistiä!","SEES-ti-ä","Neat / clean!","A common colloquial reaction meaning “cool!”","A word connected to neatness extends into positive evaluation.","It is broad everyday slang, not a uniquely Finnish cultural concept."],
+["Japanese","🇯🇵","やばい！","Yabai!","Historically: dangerous / bad.","Modern slang that can mean terrible, amazing, intense, delicious, impressive or “oh no.”","Tone and context can reverse the evaluation entirely.","Do not automatically translate it as “awesome.”"],
+["Korean","🇰🇷","대박!","Daebak!","Big hit / jackpot.","An exclamation for something amazing, shocking or unexpectedly large.","A success-related noun develops into a general reaction marker.","Informal and strongly tone-dependent."],
+["English","🇺🇸","That’s wild.","","That is untamed.","An informal reaction to something surprising, extreme or unbelievable.","The metaphor marks the event as outside ordinary bounds rather than simply good or bad.","It can express admiration, disbelief, concern or criticism."]
+]}];
 
-const tags = ["all",...new Set(phrases.map(p=>p.tag))];
-const filters = document.getElementById("filters"), cards=document.getElementById("cards");
-function render(filter="all"){
- cards.innerHTML="";
- phrases.filter(p=>filter==="all"||p.tag===filter).forEach((p,i)=>{
-   const d=document.createElement("article"); d.className="card";
-   d.innerHTML=`<div class="flag">${p.flag}</div><div class="plus">+</div><h3>${p.phrase}</h3><div class="roman">${p.lang}${p.roman?" · "+p.roman:""}</div><div class="meaning">${p.social}</div><div class="tag">${p.tag}</div>`;
-   d.onclick=()=>openModal(p); cards.appendChild(d);
- });
-}
-tags.forEach((t,i)=>{let b=document.createElement("button");b.className="filter"+(i===0?" active":"");b.textContent=t;b.onclick=()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");render(t)};filters.appendChild(b)});
-render();
-
-function openModal(p){
- const m=document.getElementById("modal"), c=document.getElementById("modalCard");
- c.innerHTML=`<div class="modal-top"><div>${p.flag} ${p.lang}</div><button class="close" onclick="closeModal()">×</button></div>
- <div class="modal-phrase">${p.phrase}</div><div class="modal-roman">${p.roman||" "}</div>
- <div class="fact"><b>Literal wording</b>${p.literal}</div>
- <div class="fact"><b>What it can do socially</b>${p.social}</div>
- <div class="fact"><b>Cultural lens — interpretation, not rule</b>${p.lens}</div>
- <div class="fact"><b>Do not overread it</b>${p.note}</div><div class="source">SOURCE NOTE · ${p.source}</div>`;
- m.classList.add("open");
-}
+const host=document.getElementById("categories");
+categories.forEach(c=>{
+ const block=document.createElement("div");block.className="category";
+ block.innerHTML=`<div class="category-intro"><div class="num">${c.n} / CATEGORY</div><div><h3>${c.title}</h3><div class="intro">${c.intro}</div></div></div>
+ <div class="row"><div class="situation"><strong>${c.q}</strong><small>READ →<br>Same social problem, five possible linguistic strategies.</small></div>
+ ${c.items.map((x,i)=>`<div class="card" data-n="${c.n}" data-i="${i}"><div class="flag">${x[1]}</div><div class="plus">+</div><div class="phrase">${x[2]}</div><div class="roman">${x[3]}</div><div class="field"><b>Literal wording</b><p>${x[4]}</p></div><div class="field"><b>Social function</b><p>${x[5]}</p></div></div>`).join("")}</div>
+ <div class="takeaway"><b>Compare the row</b><span>${c.take}</span></div>`;
+ host.appendChild(block);
+});
+document.querySelectorAll(".card").forEach(card=>card.onclick=()=>{
+ const c=categories.find(x=>x.n===card.dataset.n),x=c.items[+card.dataset.i];
+ document.getElementById("modalbox").innerHTML=`<div class="modalhead"><b>${x[1]} ${x[0]} · ${c.title}</b><button class="close" onclick="closeModal()">×</button></div><div class="modalphrase">${x[2]}</div><div style="color:var(--muted)">${x[3]}</div><div class="modalrow"><b>Literal wording</b>${x[4]}</div><div class="modalrow"><b>What it does socially</b>${x[5]}</div><div class="modalrow"><b>Why this is interesting comparatively</b>${x[6]}</div><div class="modalrow"><b>Do not overgeneralize</b>${x[7]}</div>`;
+ document.getElementById("modal").classList.add("open");
+});
 function closeModal(){document.getElementById("modal").classList.remove("open")}
 document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal()}
-document.getElementById("theme").onclick=()=>document.body.classList.toggle("dark");
-
-const clusters = {
- greeting:{title:"How do I say: I see you?",insight:"A greeting can be disguised as a question. British English may ask whether you are 'alright'; Mandarin or Korean can ask whether you have eaten. The literal topic differs, but the interactional job can converge: open contact and register concern.",msgs:[
-  ["Mandarin Chinese","你吃了吗？","Have you eaten?","left"],["British English","You alright?","I acknowledge you.","right"],["Korean","밥 먹었어?","Did you eat?","left"]
- ]},
- burden:{title:"How do I say: you didn't inconvenience me?",insight:"Australian English and Finnish can both reassure by minimizing the size of a problem. 'No worries' foregrounds the absence of worry; 'ei se mitään' frames the matter itself as 'nothing.'",msgs:[
-  ["Australian English","No worries.","Your imposition isn't a problem.","left"],["Finnish","Ei se mitään.","It's nothing.","right"]
- ]},
- effort:{title:"How do I say: I recognize your effort?",insight:"Japanese お疲れ様です institutionalizes recognition of shared labor; Chinese 加油 encourages effort by metaphorically adding fuel. One acknowledges expenditure; the other supplies momentum.",msgs:[
-  ["Japanese","お疲れ様です","I recognize the effort you've spent.","left"],["Cantonese / Mandarin","加油!","Add fuel — keep going.","right"]
- ]},
- stance:{title:"How do I say: read my attitude, not my dictionary?",insight:"Particles and interjections can carry relational information that disappears in literal translation. Singlish 'lah,' Finnish 'no niin,' and French 'bof' are reminders that tone, sequence and shared context can be part of meaning.",msgs:[
-  ["Singapore English","Can lah.","Hear the stance in the particle.","left"],["Finnish","No niin.","Context will tell you which no niin this is.","right"],["French","Bof.","My enthusiasm is... limited.","left"]
- ]}
-};
-const chat=document.getElementById("chat"), cb=document.getElementById("clusterButtons");
-function setCluster(k){
- const c=clusters[k];document.getElementById("clusterTitle").textContent=c.title;document.getElementById("clusterInsight").textContent=c.insight;
- chat.innerHTML=c.msgs.map(m=>`<div class="bubble ${m[3]==="right"?"right":""}"><div class="who">${m[0]}</div><div class="big">${m[1]}</div><div>${m[2]}</div></div>`).join("");
- document.querySelectorAll(".cluster-buttons button").forEach(x=>x.classList.toggle("active",x.dataset.k===k))
-}
-Object.keys(clusters).forEach((k,i)=>{let b=document.createElement("button");b.dataset.k=k;b.textContent=k;b.onclick=()=>setCluster(k);if(!i)b.classList.add("active");cb.appendChild(b)});setCluster("greeting");
-
-const contexts = {
- "🇨🇳 China":"Care may be expressed through concrete everyday concern: food, health, practical help, or asking what someone is doing.",
- "🇫🇮 Finland":"Care can be understated: respecting autonomy, not imposing, and treating quiet presence as compatible with closeness.",
- "🇯🇵 Japan":"Interaction often gives considerable weight to role, shared effort, situational appropriateness, and acknowledgement.",
- "🇰🇷 Korea":"Age, familiarity and relationship can strongly shape speech level and the form that care or concern takes.",
- "🇸🇬 Singapore":"Multilingual contact is visible inside everyday English; particles and code-switching can signal local stance and belonging.",
- "🇦🇺 Australia":"Informal friendliness and minimizing imposition are strongly associated with expressions such as 'no worries.'",
- "🇬🇧 Britain":"Conventional understatement and phatic questions can make literal wording a poor guide to interpersonal meaning.",
- "🇳🇱 Netherlands":"Words like gezellig foreground the social atmosphere produced by people, place and shared time."
-};
-const picks=document.getElementById("countryPicks"), selected=[];
-Object.keys(contexts).forEach(k=>{let b=document.createElement("button");b.textContent=k;b.onclick=()=>{
- if(b.classList.contains("selected")){b.classList.remove("selected");selected.splice(selected.indexOf(k),1)}
- else {if(selected.length===2){let old=selected.shift();[...picks.children].find(x=>x.textContent===old).classList.remove("selected")}selected.push(k);b.classList.add("selected")}
- updateCollision()
-};picks.appendChild(b)});
-function updateCollision(){
- const box=document.getElementById("collision");
- if(selected.length<2){box.innerHTML="<h3>Pick two contexts ↑</h3><p>Your TCK comparison will appear here.</p>";return}
- const [a,b]=selected;
- box.innerHTML=`<h3>${a} ↔ ${b}</h3><p>${contexts[a]} <br><br>${contexts[b]} <br><br><b>TCK skill:</b> noticing that the same intention — friendliness, care, respect — may need different surface behavior. Fluency is not only choosing the right word; it is predicting which social script the listener expects.</p>`;
-}
 </script>
-</body>
-</html>
+</body></html>

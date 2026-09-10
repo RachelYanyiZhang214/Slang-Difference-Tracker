@@ -1,21 +1,21 @@
-# Between the Lines — Cross-Cultural Slang Atlas
+# Between the Lines — Parallel Atlas v2
 
-A single-page interactive digital-humanities website exploring how slang, greetings, particles and everyday expressions carry social assumptions that literal translation can miss.
+This revision changes the project from a random multilingual phrase collection into a systematic parallel comparison.
 
-## What is included
-- 16 phrase cards across multiple linguistic contexts
-- Filterable phrase atlas
-- Click-through cultural/pragmatic case studies
-- Interactive "phrases talking to each other" comparison
-- TCK culture-collision tool
-- Methodology / anti-stereotype framing
-- Responsive light/dark design
+Five linguistic contexts appear in every category:
+Mandarin Chinese, Finnish, Japanese, Korean, and informal English.
 
-## Open
-Double-click `index.html` in a browser. No build step or server is required.
+Five shared social situations:
+1. Checking in
+2. Encouraging someone
+3. Erasing awkwardness
+4. Recognizing effort
+5. Reacting to something impressive
 
-## Recommended next publication step
-Upload the folder to GitHub Pages, Netlify, or Vercel. Because this is a single static file, deployment is nearly instant.
+Every card follows the same structure:
+- Literal wording
+- Social function
+- Deeper comparative interpretation
+- Caution against overgeneralization
 
-## Editorial note
-The site distinguishes pragmatic observations from broad claims about people. Add interviews or speaker submissions later to turn it into a living archive.
+Every category ends with a cross-language takeaway, so the visitor reads horizontally rather than browsing isolated trivia.
