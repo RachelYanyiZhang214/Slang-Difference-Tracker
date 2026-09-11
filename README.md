@@ -1,17 +1,25 @@
-# Between the Lines — GitHub Pages package (v5)
+# Between the Lines
 
-Upload `index.html` to the root of your GitHub Pages repository. No build step or external assets are required.
+A GitHub Pages ready interactive atlas of slang, colloquial language, cultural pragmatics, and multilingual social experience.
 
-## What changed in v5
-- Replaced the old 10 situations with the new 15-situation architecture.
-- Three chapters: How People Get Closer, The Social Danger Zone, and Between Languages.
-- Conversation Simulator promoted to a parallel **Conversation Lab** mode near the top of the site.
-- Sticky Atlas / Conversation Lab mode switch plus a floating Lab shortcut.
-- Preserved horizontal swipe/scroll and left/right arrow navigation.
-- Preserved eight linguistic contexts and language filters.
-- Every clickable card now includes a cultural/pragmatic note, a direct cross-language connection, and a **Where it breaks** failure condition.
-- Each card keeps separate everyday/colloquial and slang/informal layers.
-- Conversation Lab shows the scene, target line, literal/basic gloss, social interpretation, and failure condition.
+## Files
 
-## Editing
-The site is a single self-contained HTML file. Search for `const categories=` near the bottom to edit content.
+- `index.html` contains the full interactive Parallel Atlas and Conversation Lab
+- `about.html` contains the author page and personal motivation
+- `rachel-zhang.jpg` is the author portrait used by the About page
+
+## Site architecture
+
+The site contains fifteen social experiments across eight linguistic contexts. The Parallel Atlas keeps the social situation fixed while users move horizontally across languages. Each card includes the everyday expression, a slang or informal counterpart, literal wording, social function, pragmatic background, a direct cross-language connection, and the point where the expression stops working.
+
+The Conversation Lab is a parallel mode rather than a footer feature. It lets a visitor select a situation, language, and register, then separates literal meaning from likely social interpretation and shows how a contextual change can alter the expression.
+
+The fifteen experiments are grouped into three chapters.
+
+1. How People Get Closer
+2. The Social Danger Zone
+3. Between Languages
+
+## GitHub Pages
+
+Upload all three site files to the same repository directory. Keep `rachel-zhang.jpg` beside `index.html` and `about.html` so the author portrait loads correctly. Set GitHub Pages to publish from that directory.
