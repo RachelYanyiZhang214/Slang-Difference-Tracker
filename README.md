@@ -1,34 +1,17 @@
-# Between the Lines — Parallel Atlas v3
+# Between the Lines — GitHub Pages package (v5)
 
-This version expands the systematic comparison while restoring the interactive quality of the original site.
+Upload `index.html` to the root of your GitHub Pages repository. No build step or external assets are required.
 
-## Structure
-8 linguistic contexts:
-- Mandarin Chinese
-- Finnish
-- Japanese
-- Korean
-- English
-- Spanish
-- Brazilian Portuguese
-- French
+## What changed in v5
+- Replaced the old 10 situations with the new 15-situation architecture.
+- Three chapters: How People Get Closer, The Social Danger Zone, and Between Languages.
+- Conversation Simulator promoted to a parallel **Conversation Lab** mode near the top of the site.
+- Sticky Atlas / Conversation Lab mode switch plus a floating Lab shortcut.
+- Preserved horizontal swipe/scroll and left/right arrow navigation.
+- Preserved eight linguistic contexts and language filters.
+- Every clickable card now includes a cultural/pragmatic note, a direct cross-language connection, and a **Where it breaks** failure condition.
+- Each card keeps separate everyday/colloquial and slang/informal layers.
+- Conversation Lab shows the scene, target line, literal/basic gloss, social interpretation, and failure condition.
 
-5 fixed social situations:
-1. Checking in
-2. Encouraging someone
-3. Erasing awkwardness
-4. Recognizing effort
-5. Reacting to something impressive
-
-Total: 40 parallel entries.
-
-## Interactive features
-- Horizontal comparison rails: every category contains every language.
-- Language filter: isolate one language without changing the category structure.
-- Clickable cards: literal meaning, pragmatic function, comparison, and anti-stereotype caution.
-- Conversation Simulator: select a situation + language and see the expression used in a short dialogue.
-- Every simulator utterance includes an English translation.
-- Each interactive section includes explicit instructions explaining how to read/use it.
-
-## Design goal
-More languages, but not more clutter. The site keeps category-first organization and uses horizontal scrolling and filters instead of shrinking cards.
+## Editing
+The site is a single self-contained HTML file. Search for `const categories=` near the bottom to edit content.
