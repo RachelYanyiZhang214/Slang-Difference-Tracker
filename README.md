@@ -23,3 +23,11 @@ The fifteen experiments are grouped into three chapters.
 ## GitHub Pages
 
 Upload all three site files to the same repository directory. Keep `rachel-zhang.jpg` beside `index.html` and `about.html` so the author portrait loads correctly. Set GitHub Pages to publish from that directory.
+
+## v7 refinement
+
+The `What it does socially` field is expression-specific. It describes the immediate interactional work of each phrase, including stance, implied relationship, expected response, softness, or intensity. It is intentionally separate from the broader `Cultural / pragmatic background` field.
+
+## v8 refinement
+
+The About page has been shortened and rewritten with simpler sentence structures while preserving the author's motivation and multilingual perspective.
