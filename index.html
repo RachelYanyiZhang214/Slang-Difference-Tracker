@@ -72,8 +72,25 @@ const cases=[{"title":"Receiving Compliments","headers":["Culture","Typical resp
 
 function splitEntry(s){
   if(!s)return {phrase:"",explain:""};
-  const parts=s.split(/\s+—\s+/);
-  return {phrase:parts[0]||s, explain:parts.slice(1).join(" — ")};
+  const dash=s.split(/\s+—\s+/);
+  if(dash.length>1)return {phrase:dash[0],explain:dash.slice(1).join(" — ")};
+
+  // Many English and other Latin-script source cells place the example first
+  // and the pragmatic explanation immediately after it. Keep only the example
+  // in the large display line.
+  const quoted=s.match(/^([“"][^”"]+[”"])\s*(.*)$/);
+  if(quoted)return {phrase:quoted[1].replace(/^["“]|["”]$/g,""),explain:quoted[2].trim()};
+
+  const sentence=s.match(/^(.+?[.!?])\s+([A-ZÀ-ÖØ-Þ].*)$/);
+  if(sentence){
+    const first=sentence[1].trim();
+    const rest=sentence[2].trim();
+    // Split only when the second sentence reads like explanatory prose.
+    if(/^(A |An |The |This |That |It |Explicitly |Often |Usually |Typically |Direct |Short |Warm |Polite |More |Less |Signals |Shows |Frames |Keeps |Acknowledges |Softens |Accepts |Rejects |Adds |Avoids |Makes |Uses |Leaves |Expresses |Emphasizes |Invites |Creates |Marks |States |Gives |Can |Common |Conventional)/i.test(rest)){
+      return {phrase:first,explain:rest};
+    }
+  }
+  return {phrase:s,explain:""};
 }
 function esc(s){return String(s||"").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
 function switchMode(mode){
@@ -89,7 +106,7 @@ function renderAtlas(){
     const section=document.createElement('section'); section.className='situation';
     const h=c.headers;
     const cards=c.cultures.map((x,j)=>{
-      const a=splitEntry(x.r1), b=splitEntry(x.r2), d=splitEntry(x.r3);
+      const a=cleanDisplayEntry(x.culture,x.r1), b=cleanDisplayEntry(x.culture,x.r2), d=cleanDisplayEntry(x.culture,x.r3);
       return `<button class="culture-card" onclick="openCase(${i},${j})">
         <div class="culture">${esc(x.culture)}</div>
         <div class="response-label">${esc(h[1]||'Scenario 1')}</div>
@@ -149,6 +166,21 @@ function caseReveal(t){
  "Self Promotion":"When factual ownership of achievement becomes socially useful and when it turns into status display."
  }; return M[t]||"The local boundary between linguistic correctness and culturally fluent behavior.";
 }
+function cleanDisplayEntry(culture,entry){
+ let q=splitEntry(entry);
+ if(culture==="American English" && !q.explain){
+   const markers=[
+    " A reason or transition"," Explicitly closes"," Short, direct"," Direct and",
+    " Warm and"," Polite and"," Often "," Usually "," Typically "," This ",
+    " The phrasing "," The response "," It "," Signals "," Frames "," Keeps ",
+    " A common "," A conventional "
+   ];
+   let pos=-1;
+   for(const m of markers){const n=q.phrase.indexOf(m);if(n>0&&(pos<0||n<pos))pos=n;}
+   if(pos>0){q={phrase:q.phrase.slice(0,pos).trim(),explain:q.phrase.slice(pos).trim()}}
+ }
+ return q;
+}
 function expandUsage(title,culture,phrase,base,k){
  let extra="";
  const key=title+"|"+culture;
@@ -169,9 +201,9 @@ function expandUsage(title,culture,phrase,base,k){
 function openCase(i,j){
  const c=cases[i], x=c.cultures[j], h=c.headers;
  const boxes=[["r1",h[1]],["r2",h[2]],["r3",h[3]]].map(([k,l])=>{
-   const q=splitEntry(x[k]); return `<div class="response-box"><b>${esc(l)}</b><div class="big">${esc(q.phrase)}</div><div>${esc(expandUsage(c.title,x.culture,q.phrase,q.explain,k))}</div></div>`;
+   const q=cleanDisplayEntry(x.culture,x[k]); return `<div class="response-box"><b>${esc(l)}</b><div class="big">${esc(q.phrase)}</div><div>${esc(expandUsage(c.title,x.culture,q.phrase,q.explain,k))}</div></div>`;
  }).join('');
- const w=splitEntry(x.wrong), a=splitEntry(x.always);
+ const w=cleanDisplayEntry(x.culture,x.wrong), a=cleanDisplayEntry(x.culture,x.always);
  document.getElementById('modalbox').innerHTML=`<div class="modalhead"><div><div class="kicker">${esc(c.title)}</div><h3>${esc(x.culture)}</h3></div><button class="close" onclick="closeModal()">×</button></div>
  <div class="range5">${boxes}</div>
  <div class="boundary-row">
@@ -223,7 +255,7 @@ function englishGloss(entry){
 }
 function renderLab(){
  const i=+document.getElementById('labSituation').value||0,j=+document.getElementById('labCulture').value||0,k=document.getElementById('labResponse').value||'r1';
- const c=cases[i],x=c.cultures[j],q=splitEntry(x[k]);
+ const c=cases[i],x=c.cultures[j],q=cleanDisplayEntry(x.culture,x[k]);
  const label=k==='wrong'?'Cultural Boundary':k==='always'?'Always Inappropriate':c.headers[{r1:1,r2:2,r3:3}[k]];
  const d=dialoguePrompt(c.title,x.culture);
  const gloss=englishGloss(x[k]);
