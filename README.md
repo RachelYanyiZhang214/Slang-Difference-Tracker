@@ -1,33 +1,30 @@
-# Between the Lines
+# Between the Lines v10
 
-A GitHub Pages ready interactive atlas of slang, colloquial language, cultural pragmatics, and multilingual social experience.
+A GitHub Pages ready interactive atlas of cultural pragmatics.
+
+## Canonical source
+
+The content in this revision is rebuilt from `Slang Difference Tracker v01 ASG 20260911.xlsx`.
+
+## Architecture
+
+The website contains 15 social situations and 8 linguistic contexts for 120 cross-cultural cases.
+
+Each culture has five response positions drawn from the spreadsheet.
+
+- Three contextually appropriate responses
+- Cultural Tripwire, which is understandable but culturally revealing
+- Always Inappropriate, which acts as a cross-cultural control
+
+The Parallel Atlas keeps the situation fixed while users move across cultures.
+
+The Conversation Lab lets users choose any situation, culture, and response position. It displays the response beside the two boundary cases so the cultural contrast remains visible.
 
 ## Files
 
-- `index.html` contains the full interactive Parallel Atlas and Conversation Lab
-- `about.html` contains the author page and personal motivation
-- `rachel-zhang.jpg` is the author portrait used by the About page
+- `index.html` contains the full atlas and Conversation Lab
+- `about.html` contains the author page
+- `rachel-zhang.jpg` is the author portrait
+- `README.md` is this file
 
-## Site architecture
-
-The site contains fifteen social experiments across eight linguistic contexts. The Parallel Atlas keeps the social situation fixed while users move horizontally across languages. Each card includes the everyday expression, a slang or informal counterpart, literal wording, social function, pragmatic background, a direct cross-language connection, and the point where the expression stops working.
-
-The Conversation Lab is a parallel mode rather than a footer feature. It lets a visitor select a situation, language, and register, then separates literal meaning from likely social interpretation and shows how a contextual change can alter the expression.
-
-The fifteen experiments are grouped into three chapters.
-
-1. How People Get Closer
-2. The Social Danger Zone
-3. Between Languages
-
-## GitHub Pages
-
-Upload all three site files to the same repository directory. Keep `rachel-zhang.jpg` beside `index.html` and `about.html` so the author portrait loads correctly. Set GitHub Pages to publish from that directory.
-
-## v7 refinement
-
-The `What it does socially` field is expression-specific. It describes the immediate interactional work of each phrase, including stance, implied relationship, expected response, softness, or intensity. It is intentionally separate from the broader `Cultural / pragmatic background` field.
-
-## v8 refinement
-
-The About page has been shortened and rewritten with simpler sentence structures while preserving the author's motivation and multilingual perspective.
+Upload all files to the same GitHub Pages directory.
